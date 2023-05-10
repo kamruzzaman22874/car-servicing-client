@@ -24,27 +24,27 @@ const Products = () => {
 				<ProductsData
 					image={products2}
 					rating={4.0}
-					title='Car Engine Plug'
+					title='Car Air Filter'
 					price='$20.00'></ProductsData>
 				<ProductsData
 					image={products3}
 					rating={4.3}
-					title='Car Engine Plug'
+					title='Cools Led Light'
 					price='$20.00'></ProductsData>
 				<ProductsData
 					image={products4}
 					rating={5.0}
-					title='Car Engine Plug'
+					title='Cools Led Light'
 					price='$20.00'></ProductsData>
 				<ProductsData
 					image={products5}
 					rating={3.0}
-					title='Car Engine Plug'
+					title='Cools Led Light'
 					price='$20.00'></ProductsData>
 				<ProductsData
 					image={products6}
 					rating={4.2}
-					title='Car Engine Plug'
+					title='Cools Led Light'
 					price='$20.00'></ProductsData>
 			</div>
 		</div>
