@@ -4,6 +4,7 @@ import {
 	getAuth,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signOut,
 	updateProfile,
 } from 'firebase/auth';
 import app from '../firebase/firebase.config';
@@ -26,6 +27,11 @@ const AuthProviders = ({ children }) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
     };
+
+	const logOut = () => {
+		setLoading(true);
+		return signOut(auth);
+	}
     
 
 	useEffect(() => {
@@ -43,6 +49,7 @@ const AuthProviders = ({ children }) => {
 		loading,
 		createUser,
 		signIn,
+		logOut,
 	};
 	return (
 		<authContext.Provider value={getInfo}>{children}</authContext.Provider>
