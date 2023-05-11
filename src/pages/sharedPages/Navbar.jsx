@@ -4,12 +4,12 @@ import logo from '../../assets/logo.svg';
 import { authContext } from '../../providers/AuthProviders';
 
 const Navbar = () => {
-	const { user, logOut } = useContext(authContext)
+	const { user, logOut } = useContext(authContext);
 	const handleLogOut = () => {
 		logOut()
-		.then(()=>{})
-		.catch(err => console.error(err))
-	}
+			.then(() => {})
+			.catch((err) => console.error(err));
+	};
 	const navItems = (
 		<>
 			<li>
@@ -18,9 +18,18 @@ const Navbar = () => {
 			<li>
 				<Link to='/about'>About</Link>
 			</li>
-			{
-				user?.email ? <li><button onClick={handleLogOut}>Logout</button></li> : <li><Link to='/login'>Login</Link></li>
-			}
+			{user?.email ? (
+				<>
+					<li><Link to='/bookings'>My Bookings</Link></li>
+					<li>
+						<button onClick={handleLogOut}>Logout</button>
+					</li>
+				</>
+			) : (
+				<li>
+					<Link to='/login'>Login</Link>
+				</li>
+			)}
 		</>
 	);
 	return (

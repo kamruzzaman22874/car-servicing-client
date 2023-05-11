@@ -19,7 +19,8 @@ const BookService = () => {
 			email,
 			img,
 			date,
-			service: _id,
+			service: title,
+			service_id: _id,
 			price: price,
 		}
 
@@ -31,7 +32,11 @@ const BookService = () => {
 			body: JSON.stringify(booking),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				if (data.insertedId) {
+					alert('booking successful')
+				}
+			});
 	};
 	return (
 		<div>

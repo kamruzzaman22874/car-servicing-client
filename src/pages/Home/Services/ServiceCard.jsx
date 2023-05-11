@@ -16,7 +16,7 @@ const ServiceCard = ({ service }) => {
 					<h2 className='card-title'>{title}</h2>
 					<div className='flex justify-end'>
 						<p className='text-xl text-orange-500 font-bold'>Price: ${price}</p>
-						<Link to={`/booking/${_id}`} className='text-orange-500'>
+						<Link to={`/book/${_id}`} className='text-orange-500'>
 							<FaArrowRight></FaArrowRight>
 						</Link>
 					</div>
