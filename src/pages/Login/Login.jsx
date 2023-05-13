@@ -1,36 +1,43 @@
 import { useRef } from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg';
 import { authContext } from '../../providers/AuthProviders';
+import SocialIcons from '../sharedPages/SocialIcons';
 const Login = () => {
-    const { signIn } = useContext(authContext)
-    const emailRef = useRef()
-    const handleLogin = (event) => {
-         event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name, email, password);
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                if (user) {
-                    alert('success')
-                }
-            })
-        .catch(err => console.log(err));
-        
-    };
+	const { signIn, googleSignIn } = useContext(authContext);
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || '/';
+	const emailRef = useRef();
+	const handleLogin = (event) => {
+		event.preventDefault();
+		const form = event.target;
+		const email = form.email.value;
+		const password = form.password.value;
+		console.log(name, email, password);
+		signIn(email, password)
+			.then((result) => {
+				const user = result.user;
+				console.log(user);
+				navigate(from, { replace: true });
+				if (user) {
+					alert('success');
+				}
+			})
+			.catch((err) => console.log(err));
+	};
 
-    const handleResetPassword = () => {
-        const email = emailRef.current.value;
-        if (!email) {
-            alert('reset password email send done')
-            return;
-        }
-    }
+	const handleResetPassword = () => {
+		const email = emailRef.current.value;
+		if (!email) {
+			alert('reset password email send done');
+			return;
+		}
+	};
+
+	
+
 	return (
 		<div className='hero min-h-screen bg-base-200'>
 			<div className='hero-content flex-col lg:flex-row'>
@@ -45,8 +52,8 @@ const Login = () => {
 								<label className='label'>
 									<span className='label-text'>Email</span>
 								</label>
-                                <input
-                                    ref={emailRef}
+								<input
+									ref={emailRef}
 									type='text'
 									placeholder='email'
 									name='email'
@@ -64,14 +71,15 @@ const Login = () => {
 									className='input input-bordered'
 								/>
 								<label className='label'>
-                                    <p>Forgot Password ? 
-                                        <Link
-										to=''
-                                        onClick={handleResetPassword}
-										className='label-text-alt link link-hover'>
-										Forgot password?
-									</Link>
-                                    </p>
+									<p>
+										Forgot Password ?
+										<Link
+											to=''
+											onClick={handleResetPassword}
+											className='label-text-alt link link-hover'>
+											Forgot password?
+										</Link>
+									</p>
 								</label>
 							</div>
 							<div className='form-control mt-6'>
@@ -89,6 +97,7 @@ const Login = () => {
 							</Link>
 						</p>
 					</div>
+					<SocialIcons></SocialIcons>
 				</div>
 			</div>
 		</div>
